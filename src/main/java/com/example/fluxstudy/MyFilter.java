@@ -30,6 +30,7 @@ public class MyFilter implements Filter {
 
         PrintWriter out = servletResponse.getWriter();
 
+        // 1. reacive streams라이브러리를 사용하면 표준을 지켜서 응답할 수 있다.
         for (int i=0 ; i<5; i++) {
             out.println("응답 == " + i);
             out.flush(); // 버퍼를 비운다.
@@ -41,6 +42,7 @@ public class MyFilter implements Filter {
             }
         }
 
+        // 2. SSE 프로토콜을 Emitter라이브러리를 사용하면 편하게 쓸 수 있다.
         while (true){
             if (eventNotify.getChange()){
                 int lastIndex = eventNotify.getEvents().size()-1;
@@ -51,6 +53,8 @@ public class MyFilter implements Filter {
             Thread.sleep(1);
         }
 
+        // 3. WebFlux는 Reactive Streams이 적용된 stream을 배우고 (비동기 단일 스레드 방식)=> 더 효과적임
+        // 4. Servlet MVC는 Reactive Streams이 적용된 Stream을 배우고 (멀티 스레드 방식)
 
     }
 }

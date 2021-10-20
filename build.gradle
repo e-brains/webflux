@@ -20,6 +20,10 @@ repositories {
 
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
+	// import BOM
+	implementation platform('io.projectreactor:reactor-bom:Dysprosium-SR1')
+	// add dependencies without a version number
+	implementation 'io.projectreactor:reactor-core'
 	compileOnly 'org.projectlombok:lombok'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	annotationProcessor 'org.projectlombok:lombok'
